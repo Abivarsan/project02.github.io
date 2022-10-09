@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Messages | Firebase</title>
+    <link rel="stylesheet" href="215006C.css">
+</head>
+
+<body>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
+        import { getDatabase,set,ref } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js";
+
+        const firebaseConfig = {
+            
+            apiKey: "AIzaSyAdiInGADcy39z0ac9E5eqtRvaU70d6uRI",
+            authDomain: "project-1-46444.firebaseapp.com",
+            databaseURL: "https://project-1-46444-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "project-1-46444",
+            storageBucket: "project-1-46444.appspot.com",
+            messagingSenderId: "5315418885",
+            appId: "1:5315418885:web:23c54559208df6f60cb56c"
+        };
+      
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        
+        document.getElementById("userform").addEventListener("submit", function(e){
+            e.preventDefault();
+            let userId = document.getElementById("id").value;
+            let fname = document.getElementById("fname").value;
+            let lname = document.getElementById("lname").value;
+            let address = document.getElementById("address").value;
+            let email = document.getElementById("email").value; 
+            let phoneNo = document.getElementById("phoneNo").value;  
+            
+        set(ref(db, 'users/' + userId), {
+            firstname: fname,
+            lastname: lname,
+            address: address,
+            email: email,
+            phoneNo: phoneNo,
+        
+  });
+  
+});
+
+
+
+      </script>
+    <div class="container">
+        <form  id="Customer Form" method="post">
+            <div class="alert">Your message sent</div>
+            <div class="inputBox">
+                <input type="text" id="id" placeholder="Your Id...." />
+            </div>
+            <div class="inputBox">
+                <input type="text" id="fname" placeholder="Your first name...." />
+            </div>
+            <div class="inputBox">
+                <input type="text" id="lname" placeholder="Your last name...." />
+            </div>
+            <div class="inputBox">
+                <textarea id="address" cols="30" rows="10" placeholder="Your address..."></textarea>
+            </div>
+            <div class="inputBox">
+                <input type="email" id="email"  placeholder="Your Email....." />
+            </div>
+            <div class="inputBox">
+                <input type="tel" id="phoneNo" placeholder="Your telephone No......"/>
+            </div>
+            <div class="inputBox">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
